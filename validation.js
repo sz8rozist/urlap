@@ -6,10 +6,10 @@ $(document).ready(function(){
     $("#meret").click(function(){
       $("#form").css("width","460px");
     });
-    $("input[type=text], input[type=password], input[type=email], input[type=number]").focus(function(){
-        $(this).css("background-color","gold");
+    $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focus(function(){
+        $(this).css("background-color","lightyellow");
     });
-    $("input[type=text], input[type=password], input[type=email], input[type=number]").focusout(function(){
+    $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
       $(this).css("background-color","");
     });
     $(".reg").click(function(){
@@ -19,18 +19,22 @@ $(document).ready(function(){
 var input;
 function init(){
   input = document.getElementsByTagName('input');
-  input[0].addEventListener("keydown",nameCheck);
-  input[1].addEventListener("keydown",pwdCheck);
-  input[5].addEventListener("keydown",emailCheck);
+  input[0].addEventListener("keyup",nameCheck);
+  input[1].addEventListener("keyup",pwdCheck);
+  input[5].addEventListener("keyup",emailCheck);
+  input[4].addEventListener("keyup", iranyitoCheck);
+  input[6].addEventListener("change",szulCheck);
+  document.getElementById('kuldes').addEventListener("click", genderCheck);
+  /*document.getElementById('kuldes').addEventListener("click", erdeklodesCheck);*/
 }
 function nameCheck(){
   let uid = input[0].value;
   let szam = /[0-9]/;
   if(uid.length >= 8 && uid.match(szam) && !uid.charAt(0).match(szam)){
-    document.getElementById('message').innerHTML = "Megfelelő felhasználónév!";
+    document.getElementById('nameErr').style.display = "inline";
   }
-  else{
-    document.getElementById('message').innerHTML = "";
+  else {
+    document.getElementById('nameErr').style.display = "none";
   }
 }
 function pwdCheck(){
@@ -38,11 +42,11 @@ function pwdCheck(){
   let kisbetu = /[a-z]/;
   let nagybetu = /[A-Z]/;
   let speckar = /[*,%,?,!]/;
-  if(pass.match(kisbetu) && pass.match(nagybetu) && pass.match(speckar) && pass.length >= 8){
-    document.getElementById('message').innerHTML = "Megfelelő erősségű jelszó!";
+  if(pass.length >=8 && pass.match(kisbetu) && pass.match(nagybetu) && pass.match(speckar)){
+    document.getElementById('pwdErr').style.display = "inline";
   }
   else {
-    document.getElementById('message').innerHTML = "";
+    document.getElementById('pwdErr').style.display = "none";
   }
 }
 function emailCheck(){
@@ -50,9 +54,45 @@ function emailCheck(){
 	let kukac = email.indexOf("@");
 	let pont = email.lastIndexOf(".");
 	if(kukac>0 && (pont - kukac) > 0 && (email.length - pont) > 1  && (email.length - pont) < 5 ){
-    document.getElementById('message').innerHTML = "Megfelelő e-mail cím!";
+    document.getElementById('emailErr').style.display = "inline";
 	}
 	else {
-    document.getElementById('message').innerHTML = "";
+    document.getElementById('emailErr').style.display = "none";
 	}
 }
+function genderCheck(){
+  let genderM = input[2];
+  let genderF = input[3];
+  if((genderM.checked == false) && (genderF.checked == false)){
+    alert("Elfelejtetted kiválasztani a nemed!");
+  }else if((genderM.checked == true) && (genderF.checked == true)){
+    alert("Mindkettő nemet nem választhatod!");
+  }
+}
+function szulCheck(){
+  let szulido = input[6].value;
+  let d = new Date();
+  let a = new Date();
+  d.setYear(1950);
+  a.setYear(2000);
+  szulido = szulido.split("-");
+  if(szulido[0] >= d.getFullYear() && szulido[0] <= a.getFullYear()){
+    document.getElementById('szulErr').style.display = "inline";
+  }
+  else {
+    document.getElementById('szulErr').style.display = "none";
+  }
+
+}
+function iranyitoCheck(){
+  let iranyito = input[4].value;
+  if(iranyito >= 1000 && iranyito <= 9999){
+    document.getElementById('iranyitoErr').style.display = "inline";
+  }else {
+    document.getElementById('iranyitoErr').style.display = "none";
+  }
+}
+/*function erdeklodesCheck(){
+
+
+}*/
