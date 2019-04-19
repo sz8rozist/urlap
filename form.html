@@ -7,13 +7,31 @@
     <script src="validation.js" type="text/javascript"></script>
     <style>
       body{
-        background-color:lightgrey;
+        background-image: url('back.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+        position: relative;
+        top: 5em;
       }
       #form {
-        background-color:  #bfbfbf;
-        padding: 20px 20px;
-        width: 360px;
+        width: 450px;
+        float: right;
+      }
+      #button {
+        float: left;
+        position: relative;
+        top: 9em;
+      }
+      form {
+        padding: 35px 35px;
         display: none;
+        background-color:cadetblue ;
       }
       form input[type=checkbox]{
         display: inline;
@@ -22,74 +40,79 @@
       form input[type=radio]{
         display: inline;
         width: 12%;
+
       }
       form input{
-        display: block;
+        display: inline;
         font-family:  "Roboto" , sans-serif;
         background: #f2f2f2;
         border: 0;
         margin: 0 0 15px;
         padding: 10px;
         box-sizing: border-box;
-        width: 100%;
+        width: 95.5%;
+      }
+      .green{
+        color: red;
+        font-weight: bold;
+      }
+      span {
+        display: none;
       }
       #kuldes{
-        font-family: "Roboto" , sans-serif;
-        text-transform: uppercase;
-        outline: 0;
-        background: #4CAF50;
-        width: 100%;
-        border: 0;
-        padding: 15px;
-        color: white;
-        font-size: 14px;
+        display: none;
+        padding: 15px 25px;
+        margin: 15px;
+        font-size: 24px;
         cursor: grab;
-      }
-      #kuldes:hover, #kuldes:active{
-        background: #43A047;
-      }
-      #message{
-        color:darkgreen;
-        font-weight:bold;
-        text-align:center;
-      }
-      .reg{
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 15px 32px;
         text-align: center;
         text-decoration: none;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: grab;
-        -webkit-transition-duration: 0.4s;
-        transition-duration: 0.4s;
+        outline: none;
+        color: #fff;
+        background-color: cadetblue;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
       }
-      .reg:hover{
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      #kuldes:hover{
+        opacity: 0.9;
+      }
+      #kuldes:active{
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+      label{
+        color:white;
       }
     </style>
   </head>
   <body onload=init()>
-    <button class="reg">Regisztráció</button>
-    <div id = "form">
-    <form class="" action="" method="post">
-        <input type="text" name="user" placeholder="felhasználónév">
-        <input type="password" name="pwd" placeholder="Jelszó">
-        Fiú: <input type="radio" name="male" id="checkbox">
-        Lány: <input type="radio" name="female" id="checkbox">
-        <input type="text" name="iranyito" value="" placeholder="Irányítószám(1000-9999)">
-        <input type="email" name="email" placeholder="E-mail(valami@valami.com)">
-        <input type="number" name="szuletesidatum">
-        Sport: <input type="checkbox" name="erdeklodesikor" id="checkbox">
-        Kondi: <input type="checkbox" name="erdeklodesikor" id="checkbox">
-        Protein: <input type="checkbox" name="erdeklodesikor" id="checkbox">
-        <input type="submit" name="kuldes" value="Küldés" id="kuldes">
-    </form>
-    <div id="message"></div>
-    <button id="szin">Háttérszín</button>
-    <button id="meret">Méret</button>
-</div>
+    <div class="container">
+    <div id="button">
+    <input type="submit" name="kuldes" value="Küldés" id="kuldes">
+    </div>
+        <div id = "form">
+          <form action="" method="post">
+              <input type="text" name="user" placeholder="felhasználónév">
+              <span class="green" id="nameErr"> &#10004;</span>
+              <input type="password" name="pwd" placeholder="Jelszó">
+              <span class="green" id="pwdErr"> &#10004;</span>
+              <br>
+              <label>Fiú:</label> <input type="radio" name="genderM" id="checkbox">
+              <label>Lány:</label> <input type="radio" name="genderF" id="checkbox">
+              <input type="text" name="iranyito"  placeholder="Irányítószám(1000-9999)">
+              <span class="green" id="iranyitoErr"> &#10004;</span>
+              <input type="email" name="email" placeholder="E-mail(valami@valami.com)">
+              <span class="green" id="emailErr"> &#10004;</span>
+              <input type="date" name="szuletesidatum">
+              <span class="green" id="szulErr"> &#10004;</span>
+              <label>Sport:</label> <input type="checkbox" name="erdeklodesikor" id="checkbox">
+              <label>Kondi:</label> <input type="checkbox" name="erdeklodesikor" id="checkbox">
+              <label>Protein:</label> <input type="checkbox" name="erdeklodesikor" id="checkbox"><br>
+              <button class="hatter">Háttérkép</button>
+          </form>
+
+        </div>
+      </div>
   </body>
 </html>

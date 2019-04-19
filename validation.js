@@ -1,19 +1,12 @@
 
 $(document).ready(function(){
-    $("#szin").click(function(){
-      $("#form").css("background-color","lightblue");
-    });
-    $("#meret").click(function(){
-      $("#form").css("width","460px");
-    });
+  $("form").slideDown(800);
+  $("#kuldes").slideDown(800);
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focus(function(){
         $(this).css("background-color","lightyellow");
     });
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
       $(this).css("background-color","");
-    });
-    $(".reg").click(function(){
-      $("#form").slideToggle(800);
     });
 });
 var input;
@@ -65,9 +58,7 @@ function genderCheck(){
   let genderF = input[3];
   if((genderM.checked == false) && (genderF.checked == false)){
     alert("Elfelejtetted kiválasztani a nemed!");
-  }else if((genderM.checked == true) && (genderF.checked == true)){
-    alert("Mindkettő nemet nem választhatod!");
-  }
+  }//hibás rész valamiért ha lányt választok lefut az alert-ig a fiúnál viszont nem.
 }
 function szulCheck(){
   let szulido = input[6].value;
