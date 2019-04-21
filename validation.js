@@ -1,27 +1,27 @@
-
 $(document).ready(function(){
-  $("form").slideDown(800);
-  $("#kuldes").slideDown(800);
+    $(".registrationBox").toggle(900);
+
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focus(function(){
-        $(this).css("background-color","lightyellow");
+      $(this).css("border-bottom","1.5px solid #fb2525");
     });
+
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
-      $(this).css("background-color","");
+      $(this).css("border-bottom","");
     });
 });
-var input;
+var mezo;
 function init(){
-  input = document.getElementsByTagName('input');
-  input[0].addEventListener("keyup",nameCheck);
-  input[1].addEventListener("keyup",pwdCheck);
-  input[5].addEventListener("keyup",emailCheck);
-  input[4].addEventListener("keyup", iranyitoCheck);
-  input[6].addEventListener("change",szulCheck);
-  document.getElementById('kuldes').addEventListener("click", genderCheck);
-  /*document.getElementById('kuldes').addEventListener("click", erdeklodesCheck);*/
+  mezo = document.getElementsByTagName('input');
+  mezo[0].addEventListener("keyup", uidEll);
+  mezo[1].addEventListener("keyup", pwdEll);
+  mezo[2].addEventListener("keyup", iranyitoEll);
+  mezo[3].addEventListener("keyup", emailEll);
+  mezo[4].addEventListener("change", szulEll);
+  document.getElementById('kuldes').addEventListener("click", genderEll);
+  document.getElementById('kuldes').addEventListener("click", erdEll);
 }
-function nameCheck(){
-  let uid = input[0].value;
+function uidEll(){
+  let uid = mezo[0].value;
   let szam = /[0-9]/;
   if(uid.length >= 8 && uid.match(szam) && !uid.charAt(0).match(szam)){
     document.getElementById('nameErr').style.display = "inline";
@@ -30,8 +30,8 @@ function nameCheck(){
     document.getElementById('nameErr').style.display = "none";
   }
 }
-function pwdCheck(){
-  let pass = input[1].value;
+function pwdEll(){
+  let pass = mezo[1].value;
   let kisbetu = /[a-z]/;
   let nagybetu = /[A-Z]/;
   let speckar = /[*,%,?,!]/;
@@ -42,8 +42,16 @@ function pwdCheck(){
     document.getElementById('pwdErr').style.display = "none";
   }
 }
-function emailCheck(){
-	let email = input[5].value;
+function iranyitoEll(){
+  let iranyito = mezo[2].value;
+  if(iranyito >= 1000 && iranyito <= 9999){
+    document.getElementById('iranyitoErr').style.display = "inline";
+  }else {
+    document.getElementById('iranyitoErr').style.display = "none";
+  }
+}
+function emailEll(){
+	let email = mezo[3].value;
 	let kukac = email.indexOf("@");
 	let pont = email.lastIndexOf(".");
 	if(kukac>0 && (pont - kukac) > 0 && (email.length - pont) > 1  && (email.length - pont) < 5 ){
@@ -53,15 +61,8 @@ function emailCheck(){
     document.getElementById('emailErr').style.display = "none";
 	}
 }
-function genderCheck(){
-  let genderM = input[2];
-  let genderF = input[3];
-  if((genderM.checked == false) && (genderF.checked == false)){
-    alert("Elfelejtetted kiválasztani a nemed!");
-  }//hibás rész valamiért ha lányt választok lefut az alert-ig a fiúnál viszont nem.
-}
-function szulCheck(){
-  let szulido = input[6].value;
+function szulEll(){
+  let szulido = mezo[4].value;
   let d = new Date();
   let a = new Date();
   d.setYear(1950);
@@ -73,17 +74,26 @@ function szulCheck(){
   else {
     document.getElementById('szulErr').style.display = "none";
   }
-
 }
-function iranyitoCheck(){
-  let iranyito = input[4].value;
-  if(iranyito >= 1000 && iranyito <= 9999){
-    document.getElementById('iranyitoErr').style.display = "inline";
-  }else {
-    document.getElementById('iranyitoErr').style.display = "none";
+function genderEll(){
+  let genderM = mezo[5];
+  let genderF = mezo[6];
+  if((genderM.checked == false) && (genderF.checked == false))
+    alert("Elfelejtetted kiválasztani a nemed!");
+
+  if((genderM.checked == true) && (genderF.checked == true))
+    alert("Mindkét nemet nem választhatod!");
+}
+//Ha kettő vagy kettőnél több érdeklődési kört bejelölök akkor is feldobja az alertet.
+function erdEll(){
+  let erdKor = document.getElementById('erd').value;
+  let szamlalo = 0;
+  for(let i = 0; i < erdKor.length; i++){
+    if(erdKor[i].type == "checkbox" && erdKor[i].checked){
+      szamlalo ++;
+    }
   }
+  if(szamlalo < 2)
+    alert("Minimum két érdeklődési kört meg kell jelölj!");
+
 }
-/*function erdeklodesCheck(){
-
-
-}*/
