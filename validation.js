@@ -2,21 +2,39 @@ $(document).ready(function(){
     $(".registrationBox").toggle(900);
     $(".hatter").toggle(900);
     $(".avatarIMG").toggle(900);
-
+    //Aktív input
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focus(function(){
       $(this).css("border-bottom","1.5px solid #fb2525");
     });
-
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
       $(this).css("border-bottom","");
     });
-
+    //Hatter Gomb
     $(".hatter").click(function(){
       $("body").css("background","url('back2.jpg')");
     });
-
+    $(".hatter").mouseover(function(){
+      $(this).css("height","43px");
+    });
+    $(".hatter").mouseout(function(){
+      $(this).css("height","40px");
+    });
+    //Avatar Gomb
     $(".avatarIMG").click(function(){
       $(".avatar").attr("src","avatar2.png");
+    });
+    $(".avatarIMG").mouseover(function(){
+      $(this).css("height","43px");
+    });
+    $(".avatarIMG").mouseout(function(){
+      $(this).css("height","40px");
+    });
+    //Küldés Gomb
+    $("#kuldes").mouseover(function(){
+      $(this).css("height","43px");
+    });
+    $("#kuldes").mouseout(function(){
+      $(this).css("height","40px");
     });
 });
 var mezo;
@@ -30,6 +48,7 @@ function init(){
   document.getElementById('kuldes').addEventListener("click", genderEll);
   document.getElementById('kuldes').addEventListener("click", erdEll);
 }
+//Felhasználónév
 function uidEll(){
   let uid = mezo[0].value;
   let szam = /[0-9]/;
@@ -40,6 +59,7 @@ function uidEll(){
     document.getElementById('nameErr').style.display = "none";
   }
 }
+//Jelszó
 function pwdEll(){
   let pass = mezo[1].value;
   let kisbetu = /[a-z]/;
@@ -52,6 +72,7 @@ function pwdEll(){
     document.getElementById('pwdErr').style.display = "none";
   }
 }
+//Irányítószám
 function iranyitoEll(){
   let iranyito = mezo[2].value;
   if(iranyito >= 1000 && iranyito <= 9999){
@@ -60,6 +81,7 @@ function iranyitoEll(){
     document.getElementById('iranyitoErr').style.display = "none";
   }
 }
+//E-mail
 function emailEll(){
 	let email = mezo[3].value;
 	let kukac = email.indexOf("@");
@@ -71,6 +93,7 @@ function emailEll(){
     document.getElementById('emailErr').style.display = "none";
 	}
 }
+//Születési Idő
 function szulEll(){
   let szulido = mezo[4].value;
   let d = new Date();
@@ -85,6 +108,7 @@ function szulEll(){
     document.getElementById('szulErr').style.display = "none";
   }
 }
+//Gender(Fiú/Lány)
 function genderEll(){
   let genderM = mezo[5];
   let genderF = mezo[6];
@@ -94,6 +118,7 @@ function genderEll(){
   if((genderM.checked == true) && (genderF.checked == true))
     alert("Mindkét nemet nem választhatod!");
 }
+//Érdeklődési kör
 //Ha kettő vagy kettőnél több érdeklődési kört bejelölök akkor is feldobja az alertet.
 function erdEll(){
   let erdKor = document.getElementById('erd').value;
