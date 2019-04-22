@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $(".registrationBox").toggle(900);
+    $(".hatter").toggle(900);
+    $(".avatarIMG").toggle(900);
 
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focus(function(){
       $(this).css("border-bottom","1.5px solid #fb2525");
@@ -7,6 +9,14 @@ $(document).ready(function(){
 
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
       $(this).css("border-bottom","");
+    });
+
+    $(".hatter").click(function(){
+      $("body").css("background","url('back2.jpg')");
+    });
+
+    $(".avatarIMG").click(function(){
+      $(".avatar").attr("src","avatar2.png");
     });
 });
 var mezo;

@@ -13,11 +13,6 @@ body {
   font-weight: bold;
   color: green;
 }
-#uzenet{
-  color: white;
-  font-weight: bold;
-  display: none;
-}
 .registrationBox{
   display: none;
   width: 390px;
@@ -58,6 +53,22 @@ body {
   color: #fff;
   font-size: 18px;
   border-radius: 50px 20px;
+}
+.hatter, .avatarIMG {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #fb2525;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  display: none;
+  float: right;
+}
+.hatter:hover, .avatarIMG:hover {
+  cursor: grab;
+  background: #ffc107;
+  color: #000;
 }
 .registrationBox input[type=submit]:hover{
   cursor: grab;
