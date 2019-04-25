@@ -119,16 +119,12 @@ function genderEll(){
     alert("Mindkét nemet nem választhatod!");
 }
 //Érdeklődési kör
-//Ha kettő vagy kettőnél több érdeklődési kört bejelölök akkor is feldobja az alertet.
 function erdEll(){
-  let erdKor = document.getElementById('erd').value;
-  let szamlalo = 0;
-  for(let i = 0; i < erdKor.length; i++){
-    if(erdKor[i].type == "checkbox" && erdKor[i].checked){
-      szamlalo ++;
-    }
-  }
-  if(szamlalo < 2)
-    alert("Minimum két érdeklődési kört meg kell jelölj!");
-
+    var boxes = document.querySelectorAll('input[type=checkbox]:checked').length;
+    if (boxes == 2 || boxes > 2)
+        return true;
+    else { 
+        alert('Minimum kettőt jelölj meg!'); 
+        return false;
+    } 
 }
