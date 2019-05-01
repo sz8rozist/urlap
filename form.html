@@ -8,27 +8,22 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body onload=init()>
-    <button class="hatter">Háttérkép</button>
-    <button class="avatarIMG">Avatar</button>
+
+    <div class=container>
     <div class="registrationBox">
     <img src="avatar.png" class="avatar">
     <h1>Regisztráció</h1>
     <form action="" method="post">
           <p>Felhasználónév</p>
           <input type="text" name="user" placeholder="felhasználónév">
-          <span class="green" id="nameErr"> &#10004;</span>
           <p>Jelszó</p>
           <input type="password" name="pwd" placeholder="jelszó">
-          <span class="green" id="pwdErr"> &#10004;</span>
           <p>Irányítószám</p>
           <input type="text" name="iranyito"  placeholder="irányítószám(1000-9999)">
-          <span class="green" id="iranyitoErr"> &#10004;</span>
           <p>E-mail</p>
           <input type="email" name="email" placeholder="e-mail(valami@valami.com)">
-          <span class="green" id="emailErr"> &#10004;</span>
           <p>Születési Dátum</p>
           <input type="date" name="szuletesidatum">
-          <span class="green" id="szulErr"> &#10004;</span>
           <p>Fiú: <input type="radio" name="genderM">
           Lány: <input type="radio" name="genderF"></p>
           <p>Sport: <input type="checkbox" name="erdeklodesikor" id="erd">
@@ -37,5 +32,15 @@
           <input type="submit" name="kuldes" value="Küldés" id="kuldes">
           </form>
     </div>
+    <button class="hatter">Háttérkép</button>
+    <button class="avatarIMG">Avatar</button>
+    <div class="validate">
+      <p id="felhasz">Felhasználónév: min. 8 karakter, betű és szám is kell,<br> hogy legyen benne, de nem kezdődhet számmal</p>
+      <p id="pass">Jelszó: min. 8 karakter,<br> kicsi- és nagybetű is legyen benne, szám, *,%,?!</p>
+      <p id="iranyito">Irányítószám: 1000-9999</p>
+      <p id="email">E-mail: formailag helyes</p>
+      <p id="szul">Születési dátumn (1950-2000)</p>
+    </div>
+  </div>
   </body>
 </html>

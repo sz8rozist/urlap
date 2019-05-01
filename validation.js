@@ -1,130 +1,102 @@
 $(document).ready(function(){
-    $(".registrationBox").toggle(900);
+    $(".container").toggle(900);
     $(".hatter").toggle(900);
     $(".avatarIMG").toggle(900);
     //Aktív input
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focus(function(){
-      $(this).css("border-bottom","1.5px solid #fb2525");
+      $(this).css("border-bottom","1.5px solid #996600");
     });
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
       $(this).css("border-bottom","");
     });
-    //Hatter Gomb
-    $(".hatter").click(function(){
-      $("body").css("background","url('back2.jpg')");
-    });
-    $(".hatter").mouseover(function(){
-      $(this).css("height","43px");
-    });
-    $(".hatter").mouseout(function(){
-      $(this).css("height","40px");
-    });
-    //Avatar Gomb
     $(".avatarIMG").click(function(){
       $(".avatar").attr("src","avatar2.png");
     });
-    $(".avatarIMG").mouseover(function(){
-      $(this).css("height","43px");
-    });
-    $(".avatarIMG").mouseout(function(){
-      $(this).css("height","40px");
-    });
-    //Küldés Gomb
-    $("#kuldes").mouseover(function(){
-      $(this).css("height","43px");
-    });
-    $("#kuldes").mouseout(function(){
-      $(this).css("height","40px");
+    $(".hatter").click(function(){
+      $("body").css("background","url('back2.jpg')");
     });
 });
-var mezo;
+var input;
 function init(){
-  mezo = document.getElementsByTagName('input');
-  mezo[0].addEventListener("keyup", uidEll);
-  mezo[1].addEventListener("keyup", pwdEll);
-  mezo[2].addEventListener("keyup", iranyitoEll);
-  mezo[3].addEventListener("keyup", emailEll);
-  mezo[4].addEventListener("change", szulEll);
+  input = document.getElementsByTagName('input');
+  input[0].addEventListener("keyup", uidEll);
+  input[1].addEventListener("keyup", pwdEll);
+  input[2].addEventListener("keyup", iranyitoEll);
+  input[3].addEventListener("keyup", emailEll);
+  input[4].addEventListener("change", szulEll);
   document.getElementById('kuldes').addEventListener("click", genderEll);
   document.getElementById('kuldes').addEventListener("click", erdEll);
 }
-//Felhasználónév
 function uidEll(){
-  let uid = mezo[0].value;
+  let user = input[0].value;
   let szam = /[0-9]/;
-  if(uid.length >= 8 && uid.match(szam) && !uid.charAt(0).match(szam)){
-    document.getElementById('nameErr').style.display = "inline";
+  if(user.length >= 8 && user.match(szam) && !user.charAt(0).match(szam)){
+    document.getElementById('felhasz').style.color = "darkgreen";
   }
   else {
-    document.getElementById('nameErr').style.display = "none";
+    document.getElementById('felhasz').style.color = "";
   }
 }
-//Jelszó
 function pwdEll(){
-  let pass = mezo[1].value;
+  let pwd = input[1].value;
   let kisbetu = /[a-z]/;
   let nagybetu = /[A-Z]/;
   let speckar = /[*,%,?,!]/;
-  if(pass.length >=8 && pass.match(kisbetu) && pass.match(nagybetu) && pass.match(speckar)){
-    document.getElementById('pwdErr').style.display = "inline";
+  if(pwd.length >=8 && pwd.match(kisbetu) && pwd.match(nagybetu) && pwd.match(speckar)){
+    document.getElementById('pass').style.color = "darkgreen";
   }
   else {
-    document.getElementById('pwdErr').style.display = "none";
+    document.getElementById('pass').style.color = "";
   }
 }
-//Irányítószám
 function iranyitoEll(){
-  let iranyito = mezo[2].value;
+  let iranyito = input[2].value;
   if(iranyito >= 1000 && iranyito <= 9999){
-    document.getElementById('iranyitoErr').style.display = "inline";
+    document.getElementById('iranyito').style.color = "darkgreen";
   }else {
-    document.getElementById('iranyitoErr').style.display = "none";
+    document.getElementById('iranyito').style.color = "";
   }
 }
-//E-mail
 function emailEll(){
-	let email = mezo[3].value;
+	let email = input[3].value;
 	let kukac = email.indexOf("@");
 	let pont = email.lastIndexOf(".");
 	if(kukac>0 && (pont - kukac) > 0 && (email.length - pont) > 1  && (email.length - pont) < 5 ){
-    document.getElementById('emailErr').style.display = "inline";
+    document.getElementById('email').style.color = "darkgreen";
 	}
 	else {
-    document.getElementById('emailErr').style.display = "none";
+    document.getElementById('email').style.color = "";
 	}
 }
-//Születési Idő
 function szulEll(){
-  let szulido = mezo[4].value;
+  let szulido = input[4].value;
   let d = new Date();
   let a = new Date();
   d.setYear(1950);
   a.setYear(2000);
   szulido = szulido.split("-");
   if(szulido[0] >= d.getFullYear() && szulido[0] <= a.getFullYear()){
-    document.getElementById('szulErr').style.display = "inline";
+    document.getElementById('szul').style.color = "darkgreen";
   }
   else {
-    document.getElementById('szulErr').style.display = "none";
+    document.getElementById('szul').style.color = "";
   }
 }
-//Gender(Fiú/Lány)
 function genderEll(){
-  let genderM = mezo[5];
-  let genderF = mezo[6];
+  let genderM = input[5];
+  let genderF = input[6];
   if((genderM.checked == false) && (genderF.checked == false))
     alert("Elfelejtetted kiválasztani a nemed!");
 
   if((genderM.checked == true) && (genderF.checked == true))
     alert("Mindkét nemet nem választhatod!");
 }
-//Érdeklődési kör
 function erdEll(){
-    var boxes = document.querySelectorAll('input[type=checkbox]:checked').length;
-    if (boxes == 2 || boxes > 2)
-        return true;
-    else { 
-        alert('Minimum kettőt jelölj meg!'); 
-        return false;
-    } 
+  var erd = document.querySelectorAll('input[type=checkbox]:checked').length;
+if (erd == 2 || erd > 2)
+    return true;
+else {
+    alert('Minimum két érdeklődés kört jelölj meg!');
+    return false;
+}
 }
