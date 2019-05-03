@@ -9,11 +9,16 @@ $(document).ready(function(){
     $("input[type=text], input[type=password], input[type=email], input[type=number], input[type=date]").focusout(function(){
       $(this).css("border-bottom","");
     });
-    $(".avatarIMG").click(function(){
-      $(".avatar").attr("src","avatar2.png");
-    });
+	$('.avatarIMG').on({
+    'click': function() {
+         var src = ($(".avatar").attr('src') === 'avatar2.png')
+             ? 'avatar.png'
+             : 'avatar2.png';
+         $(".avatar").attr('src', src);
+     }
+	});
     $(".hatter").click(function(){
-      $("body").css("background","url('back2.jpg')");
+      $("body").toggleClass("active");
     });
 });
 var input;

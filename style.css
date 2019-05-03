@@ -8,6 +8,16 @@ body {
   background-attachment: fixed;
   font-family: sans-serif;
 }
+body.active{
+	margin: 0;
+  padding: 0;
+  background: url('back2.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: sans-serif;
+}
 .validate{
   height: 200px;
   background: black;
